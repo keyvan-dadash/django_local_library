@@ -1,0 +1,15 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+<div style="margin-left:350px; margin-top:250px;">
+
+<h2 class="p-2 text-light">Welcome to Library!</h2>
+<h3 class="text-light" style="padding-left:80px;">Our Library Status:</h3>
+<ul style="padding-left : 150px;">
+  <li class="text-light">Books: {{ num_books }}</li>
+  <li class="text-light">Copies: {{ num_instances }}</li>
+  <li class="text-light">Copies Avalable: {{ num_instances_available }}</li>
+  <li class="text-light">Authors: {{ num_authors }}</li>
+</ul>
+</div>
+{% endblock %}
