@@ -1,0 +1,51 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/catalog/book_list.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+  var books = {{book_list|safe}}
+  console.log(books)
+</script>
+<div id="app" class="">
+  <div id="search" class="border border-dark">
+    <div id="search-bar" class="w-100 input-group">
+      <input class="form-control" type="text" placeholder="Search">
+      <button class="btn btn-secondary btn-rounded" name="button">Search</button>
+    </div>
+    <div id="result" class="">
+      <ul class="list-unstyled">
+        <template v-for="book in book_list">
+          <li class="mt-2"><a class="text-warning" href="#">-- {book.fields.title}</a></li>
+        </template>
+      </ul>
+    </div>
+  </div>
+  <div id="bookDetail" class="bg-success">
+    sss
+  </div>
+</div>
+
+
+<script>
+  $('#result').height($(window).height() - ($('#search-bar').height()+$('#navbar').height()))
+</script>
+<script type="text/javascript">
+  var vm = new Vue({
+    delimiters: ['{', '}'],
+    el : app,
+    data : {
+      items : [],
+      book_list : books,
+    },
+    methods:{
+      addToList : function(item){
+        console.log(item);
+        this.items.unshift(item);
+      }
+    }
+  });
+</script>
+{% endblock %}

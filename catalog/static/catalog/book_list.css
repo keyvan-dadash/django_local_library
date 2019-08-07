@@ -1,0 +1,15 @@
+#search{
+  margin-top: 56px;
+  height: calc(100vh - 56px);
+  width:20%;
+  z-index: 1;
+  float: left;
+  background:rgba(22, 134, 156, 0.66);
+}
+#bookDetail{
+  height: 450px;
+  width: 500px;
+  margin-top: 250px;
+  margin-left: 400px;
+  float: left;
+}
