@@ -7,24 +7,27 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript">
   var books = {{book_list|safe}}
-  console.log(books)
 </script>
 <div id="app" class="">
   <div id="search" class="border border-dark">
     <div id="search-bar" class="w-100 input-group">
-      <input class="form-control" type="text" placeholder="Search">
+      <input class="form-control" type="text" placeholder="Search" v-model="search">
       <button class="btn btn-secondary btn-rounded" name="button">Search</button>
     </div>
     <div id="result" class="">
       <ul class="list-unstyled">
-        <template v-for="book in book_list">
-          <li class="mt-2"><a class="text-warning" href="#">-- {book.fields.title}</a></li>
+        <template v-for="book in searchResult">
+          <li class="mt-2"><a class="text-warning" href="#" @click="showBook(book)">-- {book.fields.title}</a></li>
         </template>
       </ul>
     </div>
   </div>
-  <div id="bookDetail" class="bg-success">
-    sss
+  <div id="bookDetail" class="">
+    <h3 class="text-center mb-5 text-warning">{book_title}</h3><br>
+    <p class="text-left text-warning">genre: {book_genre}</p>
+    <p class="text-left justify mb-5 text-warning">summary: {book_summary}</p><br>
+    <p class="text-left text-warning">isnb: {book_isnb}</p><br>
+    <p class="text-left text-warning">Author: <a href="#">{book_author}</a></p>
   </div>
 </div>
 
@@ -37,13 +40,37 @@
     delimiters: ['{', '}'],
     el : app,
     data : {
+      search : "",
       items : [],
       book_list : books,
+      book_title : "",
+      book_genre : "",
+      book_summary : "",
+      book_isnb : "",
+      book_author : "",
+    },
+    computed :{
+      searchResult : function(){
+      if(this.search===""){
+        return this.book_list;
+      }else{
+        search_result = [];
+        for(var i =0;i<this.book_list.length;i++){
+          if(this.book_list[i].fields.title.search(this.search) != -1){
+            search_result.push(this.book_list[i])
+          }
+        }
+        return search_result;
+      }
+    }
     },
     methods:{
-      addToList : function(item){
-        console.log(item);
-        this.items.unshift(item);
+      showBook : function(book){
+        this.book_title = book.fields.title;
+        this.book_genre = book.fields.genre.join();
+        this.book_summary = book.fields.summary;
+        this.book_isnb = book.fields.isnb;
+        this.book_author = book.fields.author;
       }
     }
   });

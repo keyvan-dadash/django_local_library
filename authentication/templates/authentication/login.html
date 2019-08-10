@@ -1,0 +1,51 @@
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'authentication/login.css' %}">
+<script type="text/javascript">
+  var error = "";
+{% if form.errors %}
+error = "Your username and password didn't match. Please try again.";
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticationd %}
+    error = "Your account doesn't have access to this page. To proceed,
+    please login with an account that has access."
+    {% else %}
+    error = "Please login to see this page."
+    {% endif %}
+{% endif %}
+</script>
+<div class="row">
+  <div id="login" class="col-3 ml-auto mr-auto container bg-light">
+    <form class="form-group justify-content-center" action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      <div class="my-2">
+        {% load static %}
+        <img id="loginimg" src="{% static 'authentication/img_avatar2.png' %}" alt="">
+      </div>
+      <h6 class="card-header text-center">Login!</h6>
+      {{ form.as_p }}
+      <small class="text-danger">{error_msg}</small>
+      <input class="btn btn-success btn-block mt-2" type="submit" value="login">
+      <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    <p class="text-center"><a href="#">Lost password?</a></p>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  new Vue({
+    delimiters: ['{', '}'],
+    el:'#login',
+    data : {
+      error_msg : "",
+      show_error_msg : false,
+    },
+  });
+</script>

@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views import generic
 from catalog.models import Book,Author,BookInstance
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-class Index(generic.TemplateView):
+class Index(LoginRequiredMixin,generic.TemplateView):
     template_name = 'catalog/index.html'
 
     def get_context_data(self,**kwargs):
@@ -11,7 +11,7 @@ class Index(generic.TemplateView):
         context['num_books'] = Book.objects.all().count()
         context['num_authors'] = Author.objects.count()
         context['num_instances'] = BookInstance.objects.all().count()
-        context[' num_instances_available'] = BookInstance.objects.filter(status__exact='a').count()
+        context['num_instances_available'] = BookInstance.objects.filter(status__exact='a').count()
         return context
 
 

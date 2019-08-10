@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.views import generic
 from catalog.models import Book,Author,BookInstance
 from django.core import serializers
+from django.contrib.auth.mixins import LoginRequiredMixin
 import json
 
-class BookListView(generic.ListView):
+
+class BookListView(LoginRequiredMixin,generic.ListView):
     model = Book
 
     def get_context_data(self, **kwargs):
