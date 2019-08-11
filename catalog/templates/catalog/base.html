@@ -17,6 +17,8 @@
           <li class="nav-item"><a class="nav-link text-primary" href="{% url 'catalog:index' %}">Home</a></li>
           <li class="nav-item"><a class="nav-link text-primary" href="#">All Book</a></li>
           <li class="nav-item"><a class="nav-link text-primary" href="#">All Authors</a></li>
+          {% load user_tag %}
+          <li class="nav-item"><a class="nav-link text-primary" href="#">{% username request%}</a></li>
         </ul>
         {% endblock %}
       </div>

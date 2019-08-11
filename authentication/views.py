@@ -8,7 +8,6 @@ from django.contrib.auth import (
 from .forms import UserLoginForm,UserRegisterForm
 def login_site(request):
     next = request.GET.get('next')
-    print(request.GET)
     form = UserLoginForm(request.POST or None)
 
     if form.is_valid():

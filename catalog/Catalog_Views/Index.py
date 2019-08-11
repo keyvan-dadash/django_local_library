@@ -12,6 +12,7 @@ class Index(LoginRequiredMixin,generic.TemplateView):
         context['num_authors'] = Author.objects.count()
         context['num_instances'] = BookInstance.objects.all().count()
         context['num_instances_available'] = BookInstance.objects.filter(status__exact='a').count()
+        context['username'] = self.request.user.username
         return context
 
 
