@@ -22,7 +22,7 @@ error = "Your username and password didn't match. Please try again.";
 </script>
 <div class="row">
   <div id="login" class="col-3 ml-auto mr-auto container bg-light">
-    <form class="form-group justify-content-center" action="{% url 'login' %}" method="post">
+    <form class="form-group justify-content-center" action="{% url 'authentication:login' %}" method="post">
       {% csrf_token %}
       <div class="my-2">
         {% load static %}

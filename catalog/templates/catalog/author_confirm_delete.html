@@ -1,0 +1,12 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="card container" style="margin-top:200px;margin-left:600px;width:400px;background-color:rgba(26, 203, 141, 0.86)";>
+  <h2>Delete Author</h2>
+  <p>Are you sure delete this author : {{ author }}</p>
+  <form class="" action="" method="post">
+    {% csrf_token %}
+    <input class="btn btn-success" type="submit" name="" value="Submit">
+  </form>
+</div>
+{% endblock %}

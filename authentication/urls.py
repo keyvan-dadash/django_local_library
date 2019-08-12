@@ -4,6 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import login_site,logout_site
 from django.contrib.auth.urls import views
+
+app_name = 'authentication'
 urlpatterns = [
     path('login/', login_site, name='login'),
     path('logout/', logout_site, name='logout'),

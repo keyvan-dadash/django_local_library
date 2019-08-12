@@ -1,0 +1,17 @@
+{% extends 'catalog/base.html' %}
+
+
+{% block content %}
+<div class="card container" style="margin-top:200px;margin-left:600px;width:300px;background-color:rgba(26, 203, 141, 0.86);">
+  <h2>Create Author</h2>
+  <p>------------------</p>
+    <form class="" action="" method="post">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <input class="btn btn-success" type="submit" name="" value="Submit" style="margin-left:100px;">
+    </form>
+</div>
+
+{% endblock %}

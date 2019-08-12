@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+    <div class="text-primary" style="margin-top:200px;margin-left:300px;">
+      <h2>Book borrowed</h2>
+      {% if loan_list %}
+        <ul>
+          {% for book in loan_list %}
+            <li style="marign-left:380px;">
+              <p style="display:inline;">{{ book.book.title }}
+                <span class="{% if book.is_overdue %} text-danger {% endif %}" >({{ book.due_back }})</span>
+              </p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+{% endblock %}

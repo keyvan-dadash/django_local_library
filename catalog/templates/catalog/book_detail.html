@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="">
+  <div class="text-info" style="margin-top:150px;margin-left:230px;">
+    <h2>{{ book_detail.title }}</h2>
+    <p>Genre: {% for Genre in book_detail.genre.all %}{{ Genre.name }}, {% endfor %}</p>
+    <p>summary: {{ book_detail.summary }}</p>
+    <p>Author: {{ book_detail.author.last_name }},{{book_detail.author.first_name}}</p>
+    <p>ISNB: {{ book_detail.isnb }}</p>
+    <ul style="margin-left:250px;">
+      {% for book_ins in book_detail.bookinstance_set.all %}
+      <li>
+        <h4>{{book_ins.get_status_display}}</h4>
+        imprint: {{ book_ins.imprint }}<br>
+        {{book_ins.id}} ({{book_ins.due_back}})
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

@@ -28,6 +28,9 @@
     <p class="text-left justify mb-5 text-warning">summary: {book_summary}</p><br>
     <p class="text-left text-warning">isnb: {book_isnb}</p><br>
     <p class="text-left text-warning">Author: <a href="#">{book_author}</a></p>
+    <div class=" text-center">
+      <a class="btn btn-warning" :href="'/catalog/book/'+book_id" target="_blank">Read More</a>
+    </div>
   </div>
 </div>
 
@@ -38,7 +41,7 @@
 <script type="text/javascript">
   var vm = new Vue({
     delimiters: ['{', '}'],
-    el : app,
+    el : '#app',
     data : {
       search : "",
       items : [],
@@ -48,6 +51,7 @@
       book_summary : "",
       book_isnb : "",
       book_author : "",
+      book_id : "",
     },
     computed :{
       searchResult : function(){
@@ -71,6 +75,7 @@
         this.book_summary = book.fields.summary;
         this.book_isnb = book.fields.isnb;
         this.book_author = book.fields.author;
+        this.book_id = book.pk;
       }
     }
   });

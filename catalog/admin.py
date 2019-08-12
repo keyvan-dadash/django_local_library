@@ -10,10 +10,10 @@ class AdminAuthor(admin.ModelAdmin):
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status','due_back')
-    list_display = ('id','status','book')
+    list_display = ('id', 'status', 'book', 'borrower', 'due_back')
     fieldsets = (
-    ('Information', {'fields': ('book','imprint','id')}),
-    ('Availability',{'fields': ('status','due_back')})
+    ('Information', {'fields': ('book', 'imprint', 'id')}),
+    ('Availability',{'fields': ('status', 'due_back', 'borrower')})
     )
 
 class BookInstanceInline(admin.TabularInline):
